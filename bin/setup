@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -oue pipefail
+
+whitelist=(
+    "/usr/lib/polkit-1/polkit-agent-helper-1"
+#    "/usr/bin/bwrap"
+)
+is_in_whitelist() {
+    local binary="$1"
+    for allowed_binary in "${whitelist[@]}"; do
+        if [ "$binary" = "$allowed_binary" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+set_caps_if_present() {
+    local caps="$1"
+    local binary_path="$2"
+    if [ -f "$binary_path" ]; then
+        echo "Setting caps $caps on $binary_path"
+        setcap "$caps" "$binary_path"
+        echo "Set caps $caps on $binary_path"
+    fi
+}
+main() {
+    pacman -Rns gnome-software gnome-contacts gnome-weather gnome-logs gnome-maps lftp malcontent epiphany gnome-tour gnome-calendar gnome-contacts gnome-music totem gnome-user-share decibels rygel gnome-remote-desktop gnome-connections
+    systemctl disable avahi-daemon.socket
+    systemctl mask avahi-daemon.socket
+    systemctl disable avahi-daemon.service
+    systemctl mask avahi-daemon.service
+    systemctl disable alsa-state
+    systemctl mask alsa-state
+    systemctl disable geoclue
+    systemctl mask geoclue
+    files=("/usr/bin/chsh" "/usr/bin/chfn" "/usr/bin/pkexec" "/usr/bin/sudo" "/usr/bin/su" "/usr/bin/ksu" "/usr/bin/sg" "/usr/share/applications/gnome-online-accounts-panel.desktop" "qv4l2.desktop" "qvidcap.desktop" "google-maps-geo-handler.desktop")
+    for file in "${files[@]}"; do
+        rm -f "$file"
+    done
+    find "/usr" -type f -perm /4000 |
+        while IFS= read -r binary; do
+            if ! is_in_whitelist "$binary"; then
+                chmod u-s "$binary"
+                echo "Removed SUID bit from $binary"
+            fi
+        done
+    find "/usr" -type f -perm /2000 |
+        while IFS= read -r binary; do
+            if ! is_in_whitelist "$binary"; then
+                chmod g-s "$binary"
+                echo "Removed SGID bit from $binary"
+            fi
+        done
+    set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/chage"
+    set_caps_if_present "cap_sys_admin=ep" "/usr/bin/fusermount3"
+    set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/unix_chkpwd"
+}
+main
+rm -f "$0"
