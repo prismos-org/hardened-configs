@@ -25,7 +25,6 @@ set_caps_if_present() {
     fi
 }
 main() {
-    pacman -Rns gnome-software gnome-contacts gnome-weather gnome-logs gnome-maps lftp malcontent epiphany gnome-tour gnome-calendar gnome-contacts gnome-music totem gnome-user-share decibels rygel gnome-remote-desktop gnome-connections
     systemctl disable avahi-daemon.socket
     systemctl mask avahi-daemon.socket
     systemctl disable avahi-daemon.service
