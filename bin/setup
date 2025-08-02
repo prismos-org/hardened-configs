@@ -4,7 +4,7 @@ set -oue pipefail
 
 whitelist=(
     "/usr/lib/polkit-1/polkit-agent-helper-1"
-#    "/usr/bin/bwrap"
+    "/usr/bin/bwrap"
 )
 is_in_whitelist() {
     local binary="$1"
@@ -25,6 +25,10 @@ set_caps_if_present() {
     fi
 }
 main() {
+    if [ "$EUID" -ne 0 ]; then
+        echo "This script must be run as root."
+        exit 1
+    fi
     systemctl disable avahi-daemon.socket
     systemctl mask avahi-daemon.socket
     systemctl disable avahi-daemon.service
@@ -33,6 +37,8 @@ main() {
     systemctl mask alsa-state
     systemctl disable geoclue
     systemctl mask geoclue
+    systemctl disable cups
+    systemctl mask cups
     files=("/usr/bin/chsh" "/usr/bin/chfn" "/usr/bin/pkexec" "/usr/bin/sudo" "/usr/bin/su" "/usr/bin/ksu" "/usr/bin/sg" "/usr/share/applications/gnome-online-accounts-panel.desktop" "qv4l2.desktop" "qvidcap.desktop" "google-maps-geo-handler.desktop")
     for file in "${files[@]}"; do
         rm -f "$file"

@@ -1,0 +1,6 @@
+#!/bin/bash
+# Prism OS <nexus-x[at]tuta[dot]io>
+# Protects against https downgrade attacks.
+
+source /etc/swrappers.conf
+scurl --location --remote-name-all --remote-header-name --user-agent "$USER_AGENT" --compressed "$@"
