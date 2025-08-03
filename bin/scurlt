@@ -1,0 +1,7 @@
+#!/bin/bash
+# Prism OS <nexus-x[at]tuta[dot]io>
+# Curl over tor
+# See: https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TorifyHOWTO/Misc
+
+source /etc/swrappers.conf
+exec curl --tlsv1.3 --user-agent "$USER_AGENT" --compressed --proxy "socks5h://127.0.0.1:$TOR_PORT" "$@"

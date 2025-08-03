@@ -1,0 +1,84 @@
+#!/bin/bash
+
+set -oue pipefail
+
+whitelist=(
+    "/usr/lib/polkit-1/polkit-agent-helper-1"
+)
+is_in_whitelist() {
+    local binary="$1"
+    for allowed_binary in "${whitelist[@]}"; do
+        if [ "$binary" = "$allowed_binary" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+set_caps_if_present() {
+    local caps="$1"
+    local binary_path="$2"
+    if [ -f "$binary_path" ]; then
+        echo "Setting caps $caps on $binary_path"
+        setcap "$caps" "$binary_path"
+        echo "Set caps $caps on $binary_path"
+    fi
+}
+rename_user() {
+    local old_username=$1
+    if id "$old_username" &>/dev/null; then
+        usermod -l user "$old_username"
+        usermod -d /home/user -m user
+        sed -i 's|^$old_username:.*|user:/home/user|' /etc/passwd
+        echo "Username '$old_username' has been changed to 'user'."
+    else
+        echo "User '$old_username' does not exist. Skipping."
+    fi
+}
+main() {
+    if [ "$EUID" -ne 0 ]; then
+        echo "This script must be run as root."
+        exit 1
+    fi
+    hostnamectl hostname localhost
+    echo "hostname changed to 'localhost'."
+
+    read -r -p "Enter the usernames you want to rename (space-separated): " -a usernames
+    for old_username in "${usernames[@]}"; do
+        rename_user "$old_username"
+    done
+
+    systemctl disable avahi-daemon.socket || true
+    systemctl mask avahi-daemon.socket || true
+    systemctl disable avahi-daemon.service || true
+    systemctl mask avahi-daemon.service || true
+    systemctl disable alsa-state || true
+    systemctl mask alsa-state || true
+    systemctl disable geoclue || true
+    systemctl mask geoclue || true
+    systemctl disable cups || true
+    systemctl mask cups || true
+    files=("/usr/bin/chsh" "/usr/bin/chfn" "/usr/bin/pkexec" "/usr/bin/sudo" "/usr/bin/su" "/usr/bin/ksu" "/usr/bin/sg" "/usr/share/applications/gnome-online-accounts-panel.desktop" "qv4l2.desktop" "qvidcap.desktop" "google-maps-geo-handler.desktop")
+    for file in "${files[@]}"; do
+        rm -f "$file"
+    done
+    find "/usr" -type f -perm /4000 |
+        while IFS= read -r binary; do
+            if ! is_in_whitelist "$binary"; then
+                chmod u-s "$binary"
+                echo "Removed SUID bit from $binary"
+            fi
+        done
+    find "/usr" -type f -perm /2000 |
+        while IFS= read -r binary; do
+            if ! is_in_whitelist "$binary"; then
+                chmod g-s "$binary"
+                echo "Removed SGID bit from $binary"
+            fi
+        done
+    set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/chage"
+    set_caps_if_present "cap_sys_admin=ep" "/usr/bin/fusermount3"
+    set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/unix_chkpwd"
+    touch /usr/share/setup_done
+}
+main
+rm -f "$0"

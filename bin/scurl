@@ -1,0 +1,6 @@
+#!/bin/bash
+# Prism OS <nexus-x[at]tuta[dot]io>
+# scurl: Adds "--tlsv1.3 --proto https" in front of all invocations of "curl".
+
+source /etc/swrappers.conf
+curl --tlsv1.3 --proto https --user-agent "$USER_AGENT" "$@"
