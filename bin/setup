@@ -1,4 +1,5 @@
 #!/bin/bash
+# Prism OS <nexus-x[at]tuta[dot]io>
 
 set -oue pipefail
 
@@ -28,7 +29,7 @@ rename_user() {
     if id "$old_username" &>/dev/null; then
         usermod -l user "$old_username"
         usermod -d /home/user -m user
-        sed -i 's|^$old_username:.*|user:/home/user|' /etc/passwd
+        sed -i "s|^$old_username:.*|user:/home/user|" /etc/passwd
         echo "Username '$old_username' has been changed to 'user'."
     else
         echo "User '$old_username' does not exist. Skipping."
@@ -78,7 +79,7 @@ main() {
     set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/chage"
     set_caps_if_present "cap_sys_admin=ep" "/usr/bin/fusermount3"
     set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/bin/unix_chkpwd"
-    touch /usr/share/setup_done
+    echo "1" > /usr/share/setup_done
 }
 main
 rm -f "$0"

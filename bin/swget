@@ -2,4 +2,5 @@
 # Prism OS <nexus-x[at]tuta[dot]io>
 # swget: Adds "--secure-protocol=TLSv1_3 --https-enforce=hard" in front of all invocations of "wget".
 
+source /etc/swrappers.conf
 exec wget --secure-protocol=TLSv1_3 --https-enforce=hard --user-agent="${USER_AGENT}" "$@"

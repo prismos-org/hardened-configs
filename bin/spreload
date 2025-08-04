@@ -1,6 +1,6 @@
-# Prism OS <nexus at tuta dot io>
 #!/bin/bash
 
+# Prism OS <nexus at tuta dot io>
 # This script binds /etc/ld.so.preload to /dev/null/ and sandboxes the specified application as well.
 # It is better to sandbox an application which does not support hardened malloc rather than to strip the LD_PRELOAD environment variable.
 # Usage: spreload <application> [args...]
@@ -15,7 +15,6 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-APP_NAME=$(basename "$1")
 if [ -x "$1" ]; then
     APP_PATH="$1"
 else

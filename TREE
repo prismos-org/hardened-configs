@@ -1,0 +1,46 @@
+#
+# TREE - PATHS TO WHERE THE CONFIGURATIONS AND BINARIES NEEDS TO BE LOCATED AT.
+#
+
+/
+├── usr/bin/
+│   ├── scurl
+│   ├── scurld
+│   ├── scurlt
+│   ├── setup
+│   ├── spreload
+│   └── swget
+├── etc/
+│   ├── chrony.conf
+│   ├── machine-id
+│   ├── swrappers.conf
+│   ├── resolv.conf -> /run/systemd/resolve/stub-resolv.conf
+│   ├── modprobe.d/
+│   │   └── blacklist.conf
+│   ├── NetworkManager/
+│   │   ├── conf.d/
+│   │   │   ├── duid.conf
+│   │   │   └── macrandomize.conf
+│   │   └── dispatcher.d/
+│   │       ├── 01-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
+│   │       └── no-wait.d/
+│   │           └── 01-no-send-hostname.sh
+│   ├── pam.d/
+│   │   └── passwd
+│   ├── polkit-1/
+│   │   └── rules.d/
+│   │       └── persist.rules
+│   ├── profile
+│   ├── profile.d/
+│   │   └── disable-gnome-jit.sh
+│   ├── security/
+│   │   ├── access.conf
+│   │   ├── faillock.conf
+│   │   └── limits.conf
+│   ├── sysconfig/
+│   │   └── chronyd
+│   ├── sysctl.d/
+│   │     └── 60-hardening.conf
+│   └── systemd/
+│       └── resolved.conf
+
