@@ -20,7 +20,8 @@
   - Implementing faillock to limit consecutive authentication attempts, with a default value of 30 (see: `etc/security/faillock.conf`).
   - Allowing only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
   - Enforcing strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
-  - Using NTS servers instead of unencrypted NTP servers (see: `/etc/chrony.conf`).
+  - Increases the password hashing rounds to 8 and maximum number of login tries Is limited to 10. (see: `etc/login.defs` and `etc/security/faillock.conf`).
+  - Using NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
   - Applying kernel arguments (located in `etc/KARGS`) that provide mitigations against various vulnerabilities like spectre and DMA and reduce the attack surface.
 
 ## Using These Configurations and Scripts
@@ -61,17 +62,14 @@ We do not provide packages for other Linux distributions so you will need to app
 ## Tips
 
 - Fully encrypt your disk.
-<<<<<<< HEAD
 - Encrypt the boot partition as well if possible.
 - Use [hardened malloc](https://github.com/GrapheneOS/hardened_malloc) instead of the default glibc malloc. (**Hardened malloc is installed and setup to be preload automatically when installed through the package.**)
 - Use a trusted VPN (like Mullvad) and use a kill switch.
 - If you're still using closed source applications from big techs, you may be secure but not private. There are alternatives, use them.
-=======
 - Encrypt the boot partition as well If possible.
 - Use [hardened malloc](https://github.com/GrapheneOS/hardened_malloc) instead of the default glibc malloc. (**Hardened malloc Is installed and setup automatically when Installed through the package.**)
 - Use a trusted VPN (like mullvad) and use a kill switch.
 - If you're still using closed source applications from big techs, you may be secure but not private. There are alternatives use them.
->>>>>>> 3307928 (Update configurations, binaries, TREE and README.)
 - Use a firewall and close any open ports which you haven't purposefully opened.
 - `Be a little paranoid. And be suspicious. If anything sounds too good to be true, it probably is!` - Arch WIKI
 - The weakest link will always be you, the user. Be conscious of your actions.
