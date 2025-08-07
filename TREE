@@ -38,7 +38,7 @@
 │   ├── polkit-1/
 │   │   └── rules.d/
 │   │       └── persist.rules - 644
-│   ├── profile
+│   ├── profile - 644
 │   ├── profile.d/
 │   │   └── disable-gnome-jit.sh - 644
 │   │   └── hardened_malloc.sh - 644
@@ -51,5 +51,6 @@
 │   │   └── chronyd - 644
 │   ├── sysctl.d/
 │   │     └── 60-hardening.conf - 644
+│   │     └── 90-enable-userns.conf - 644 (Prism OS specific)
 │   └── systemd/
 │       └── resolved.conf - 644
