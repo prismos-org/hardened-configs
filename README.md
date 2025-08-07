@@ -17,7 +17,7 @@
   - Implementing per-network MAC randomization, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
   - Setting the default DNS server to Mullvad's, with DNS over TLS and DNSSEC enabled (see: `etc/resolved.conf`).
   - Restricting the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
-  - Implementing faillock to limit consecutive authentication attempts, with a default value of 30 (see: `etc/security/faillock.conf`).
+  - Implementing faillock to limit consecutive authentication attempts, with a default value of 10 (see: `etc/security/faillock.conf`).
   - Allowing only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
   - Enforcing strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
   - Increases the password hashing rounds to 8 and maximum number of login tries Is limited to 10. (see: `etc/login.defs` and `etc/security/faillock.conf`).
