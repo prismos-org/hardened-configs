@@ -47,7 +47,7 @@
     ```sh
     pacman -S hardened-configs
     ```
-    The script automatically backs up your current GRUB config to `/etc/default/grub.bak`, but just to make sure make a backup of it yourself. You may need to remove conflicting files for a successful installation. The package also installs [pusbctl](https://github.com/prismos-org/pusbctl) a tool for protecting against rogue USB devices like a rubber ducky, AppArmor, chrony, and [hardened malloc](https://github.com/GrapheneOS/hardened_malloc).
+    The script automatically backs up your current GRUB config to `/etc/grub.bak`, but just to make sure make a backup of it yourself. You may need to remove conflicting files for a successful installation. The package also installs [pusbctl](https://github.com/prismos-org/pusbctl) a tool for protecting against rogue USB devices like a rubber ducky, AppArmor, chrony, and [hardened malloc](https://github.com/GrapheneOS/hardened_malloc).
 
     **Note**: If you're not using GRUB as your boot loader, you will need to apply the kernel arguments yourself, located in `etc/KARGS`.
 
