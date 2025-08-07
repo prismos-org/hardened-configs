@@ -82,7 +82,7 @@ This is licensed under the GNU General Public License v3.0. See the [LICENSE](LI
 ## Contact
 
 You can contact me via email or XMPP:
-- [Email](mailto:nexus-x[at]tuta[dot]io)
+- [Email](mailto:nexus-x@tuta.io)
 - XMPP: nexus-x@xmpp.is
 - [PGP](https://nrz-21.github.io/key.txt)
 
