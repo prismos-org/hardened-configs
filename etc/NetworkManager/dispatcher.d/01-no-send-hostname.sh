@@ -1,0 +1,1 @@
+/etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
