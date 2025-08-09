@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Copyright (C) 2025 Prism OS Authors
 #
 # This file is free software: you can redistribute it and/or modify
