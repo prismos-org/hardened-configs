@@ -23,6 +23,7 @@
   - Increases the password hashing rounds to 8 and maximum number of login tries Is limited to 10. (see: `etc/login.defs` and `etc/security/faillock.conf`).
   - Using NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
   - Applying kernel arguments (located in `etc/KARGS`) that provide mitigations against various vulnerabilities like spectre and DMA and reduce the attack surface.
+  - Hardened malloc is preloaded by specifying its shared object in the `/etc/ld.so.preload` file, which is set with permission `600`. This ensures that only root can read or modify the file, so all root processes (including PID 1) always use hardened malloc. User processes can still unset the variable as needed, providing flexibility for user applications while maintaining strict enforcement for system and privileged processes. This approach is derived from secureblue.
 
 ## Using These Configurations and Scripts
 
@@ -77,7 +78,13 @@ We do not provide packages for other Linux distributions so you will need to app
 
 ## License
 
-This is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPLv3).  
+See the [LICENSE](./LICENSE) file for details.
+
+**Notice:**  
+Some configurations in this repository are derived from or inspired by the [secureblue](https://github.com/secureblue/secureblue) and [GrapheneOS](https://github.com/GrapheneOS) projects.
+Original authors and contributors retain their respective copyrights.
+All modifications and additions are licensed under GPLv3 unless otherwise noted.
 
 ## Contact
 
