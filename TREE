@@ -1,5 +1,10 @@
+# /**************************** File Tree Structure ****************************/
 #
-# TREE - PATHS TO WHERE THE CONFIGURATIONS AND BINARIES NEEDS TO BE LOCATED AT.
+#  Outlines where the configuration files and binaries should be
+#  located at. Each file is followed by its respective
+#  permissions in octal format. Symbolic links are indicated by '->' followed by the target path.
+#
+# /***************************************************************************/
 #
 
 /
