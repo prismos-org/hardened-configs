@@ -10,16 +10,16 @@
   There's also a `setup` script which disables and masks various services like geoclue, cups and avahi, renames the hostname to `localhost` and the username to `user` to minimize information leakage. The script also deletes binaries like `sudo`, `su`, `ksu`, and `pkexec`, and removes the SETUID and SETGID bits from binaries, granting necessary binaries capabilities instead. Use `run0` to escalate privileges to root instead. A rule in `etc/polkit-1/rules.d/` enables the persist feature, though it may not function until an update containing this [PR](https://github.com/polkit-org/polkit/pull/533) is rolled out.
 
 - **Configurations**: Located in `etc/`. These configurations improve the security of your machine and reduce its attack surface. Key changes include:
-  - Replacing the machine ID with a generic one (used by WHONIX).
-  - Blacklisting several kernel modules to reduce attack surface.
-  - Various sysctl values for system hardening. (see: `etc/sysctl.d/60-hardening.conf`)
-  - Setting the default umask to `0077`.
-  - Implementing per-network MAC randomization, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
-  - Setting the default DNS server to Mullvad's, with DNS over TLS and DNSSEC enabled (see: `etc/resolved.conf`).
-  - Restricting the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
-  - Implementing faillock to limit consecutive authentication attempts, with a default value of 30 then lockout for 24 hours. (see: `etc/security/faillock.conf`).
-  - Allowing only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
-  - Enforcing strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
+  - Replace the machine ID with a generic one (used by WHONIX).
+  - Blacklist several kernel modules to reduce attack surface.
+  - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. We have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
+  - The default umask Is `0077`.
+  - Enable per-network MAC randomization, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
+  - The default DNS server Is set to Mullvad's, with DNS over TLS and DNSSEC enabled (see: `etc/resolved.conf`).
+  - Restrict the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
+  - Add a limit to restrict consecutive failed authentication attempts, with a default value of 30 then lockout for 24 hours. (see: `etc/security/faillock.conf`).
+  - Allow only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
+  - Enforce strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
   - Increase the password hashing rounds to 8, and use YESCRYP-based algorithm for encryptying passwords; this Is the default In Arch Linux. (see: `etc/login.defs`).
   - Use NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
   - Kernel arguments (located in `etc/KARGS`) that provide mitigations against various vulnerabilities like spectre and DMA and reduce the attack surface.
