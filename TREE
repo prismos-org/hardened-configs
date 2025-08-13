@@ -11,8 +11,8 @@
 ├── usr/
 │   ├── bin/
 │   │   ├── scurl  - 655
-│   │   ├── scurld - 655
-│   │   ├── scurlt - 655
+│   │   ├── scurl-download - 655
+│   │   ├── scurl-tor - 655
 │   │   ├── setup  - 655
 │   │   └── swget  - 655
 │   ├── environment.d/
@@ -43,7 +43,7 @@
 │   ├── polkit-1/
 │   │   └── rules.d/
 │   │       └── persist.rules - 644
-│   ├── profile - 644
+│   ├── profile - 644 (login.defs and PAM Is used to set the default UMASK In Arch Linux; profile Is ignored.)
 │   ├── profile.d/
 │   │   └── disable-gnome-jit.sh - 644
 │   │   └── hardened_malloc.sh - 644
