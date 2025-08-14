@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source /etc/swrappers.conf
-exec wget --secure-protocol=TLSv1_3 --https-enforce=hard --user-agent="${USER_AGENT}" "$@"
+exec wget --secure-protocol=TLSv1_3  --https-only --user-agent="${USER_AGENT}" "$@"
