@@ -1,0 +1,1 @@
+/etc/NetworkManager/dispatcher.d/pre-up.d/01-flush-cache.sh

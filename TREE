@@ -35,27 +35,32 @@
 │   │   │   └── macrandomize.conf - 644
 │   │   └── dispatcher.d/
 │   │       ├── 01-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
-│   │       └── no-wait.d/
-│   │           └── 01-no-send-hostname.sh - 744
+│   │       ├── 01-flush-cache.sh -> /etc/NetworkManager/dispatcher.d/pre-up.d/01-flush-cache.sh
+│   │       ├── no-wait.d/
+│   │       │    └── 01-no-send-hostname.sh - 744
+│   │       └── pre-up.d/
+│   │           └── 01-flush-cache.sh - 744
 │   ├── pam.d/
-│   │   └── passwd - 644
+│   │   ├── passwd - 644
 │   │   └── system-login - 644
 │   ├── polkit-1/
 │   │   └── rules.d/
 │   │       └── persist.rules - 644
 │   ├── profile - 644 (login.defs and PAM Is used to set the default UMASK In Arch Linux; profile Is ignored.)
 │   ├── profile.d/
-│   │   └── disable-gnome-jit.sh - 644
+│   │   ├── disable-gnome-jit.sh - 644
 │   │   └── hardened_malloc.sh - 644
 │   ├── security/
 │   │   ├── access.conf - 644
 │   │   ├── faillock.conf - 644
-│   │   └── limits.conf - 644
+│   │   ├── limits.conf - 644
 │   │   └── pam_env.conf - 644
 │   ├── sysconfig/
 │   │   └── chronyd - 644
 │   ├── sysctl.d/
-│   │     └── 60-hardening.conf - 644
+│   │     ├── 60-hardening.conf - 644
 │   │     └── 90-enable-userns.conf - 644 (Prism OS specific)
-│   └── systemd/
-│       └── resolved.conf - 644
+│   ├── systemd/
+│   │   ├── resolved.conf - 644
+│   │   └── system/
+│   │       └── autowipe.service - 644
