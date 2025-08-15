@@ -1,0 +1,1 @@
+/etc/NetworkManager/dispatcher.d/pre-up.d/02-no-send-hostname.sh

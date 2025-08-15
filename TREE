@@ -34,12 +34,11 @@
 │   │   │   ├── duid.conf - 644
 │   │   │   └── macrandomize.conf - 644
 │   │   └── dispatcher.d/
-│   │       ├── 01-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
+│   │       ├── 02-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/pre-up.d/02-no-send-hostname.sh
 │   │       ├── 01-flush-cache.sh -> /etc/NetworkManager/dispatcher.d/pre-up.d/01-flush-cache.sh
-│   │       ├── no-wait.d/
-│   │       │    └── 01-no-send-hostname.sh - 744
 │   │       └── pre-up.d/
 │   │           └── 01-flush-cache.sh - 744
+│   │           └── 02-no-send-hostname.sh - 744
 │   ├── pam.d/
 │   │   ├── passwd - 644
 │   │   └── system-login - 644
