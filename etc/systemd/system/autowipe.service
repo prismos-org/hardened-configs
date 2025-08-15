@@ -1,5 +1,5 @@
 [Unit]
-Description=Delete data which may lie still in your memory.
+Description=Delete data which may lie still in your memory. Requires secure-delete toolkit to work.
 After=umount.target
 Before=shutdown.target reboot.target halt.target
 
