@@ -12,10 +12,10 @@
 - **Configurations**: Located in `etc/`. These configurations improve the security of your machine and reduce its attack surface. Key changes include:
   - Replace the machine ID with a generic one (used by WHONIX).
   - Blacklist several kernel modules to reduce attack surface.
-  - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. We have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
+  - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. I have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
   - The default umask Is `0077`.
   - Enables per-network MAC randomization and flushes the DHCP client state before connecting to a network so that the network can not identify that you're connecting with the same device, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
-  - The network-provided DNS server Is used to resolve domain names by default. Using the network-provided DNS servers is the best way to blend in with other users. In some broken or unusual network environments, the network could fail to provide DNS servers or do it on purpose to fingerprint the clients seeing this we have provided **commonly** used DNS servers with good privacy policy (cloudflare and quad9, both support DNSSEC and DoT) as fallback. (see: `etc/resolved.conf`).
+  - The network-provided DNS server Is used to resolve domain names by default. Using the network-provided DNS servers is the best way to blend in with other users. In some broken or unusual network environments, the network could fail to provide DNS servers or do it on purpose to fingerprint the clients seeing this I have provided **commonly** used DNS servers with good privacy policy (cloudflare and quad9, both support DNSSEC and DoT) as fallback. (see: `etc/resolved.conf`).
   - Restrict the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
   - Add a limit to restrict consecutive failed authentication attempts, with a default value of 30 then lockout for 24 hours. (see: `etc/security/faillock.conf`).
   - Allow only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
@@ -24,6 +24,7 @@
   - Use NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
   - Kernel arguments (located in `etc/KARGS`) disable SMT, enable mitigations for spectre, provide mitigations against DMA attacks, reduce information leakage, etc.
   - Hardened malloc is preloaded by specifying its shared object in the `/etc/ld.so.preload` file, which is set with permission `600`. This ensures that only root can read or modify the file, so all root processes (including PID 1) always use hardened malloc. User processes can still unset the variable as needed, providing flexibility for user applications while maintaining strict enforcement for system and privileged processes. This approach is derived from secureblue.
+  - Additionally there's a systemd service (`etc/systemd/system/autowipe.service`) which securely deletes data which may still lie In your memory before shutting down, rebooting or halt. It uses the smem tool from the (secure-delete)[https://github.com/prismos-org/secure-delete] toolkit. Currently the total insecure mode Is used meaning only one pass with 0x00 Is written to the memory, any other option Is way too slow to be feasable. I'll replace this If I find a better option.
 
 ## Using These Configurations and Scripts
 
@@ -58,7 +59,7 @@ You can build the package using this [PKGBUILD](https://github.com/prismos-org/P
 
 ### Other Linux Distributions
 
-We do not provide packages for other Linux distributions so you will need to apply these configurations manually. You can know where every file and script goes by taking a look at the `TREE` file.
+I do not provide packages for other Linux distributions so you will need to apply these configurations manually. You can know where every file and script goes by taking a look at the `TREE` file.
 
 ## License
 
