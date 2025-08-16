@@ -24,7 +24,7 @@
   - Use NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
   - Kernel arguments (located in `etc/KARGS`) disable SMT, enable mitigations for spectre, provide mitigations against DMA attacks, reduce information leakage, etc.
   - Hardened malloc is preloaded by specifying its shared object in the `/etc/ld.so.preload` file, which is set with permission `600`. This ensures that only root can read or modify the file, so all root processes (including PID 1) always use hardened malloc. User processes can still unset the variable as needed, providing flexibility for user applications while maintaining strict enforcement for system and privileged processes. This approach is derived from secureblue.
-  - Additionally there's a systemd service (`etc/systemd/system/autowipe.service`) which securely deletes data which may still lie In your memory before shutting down, rebooting or halt. It uses the smem tool from the (secure-delete)[https://github.com/prismos-org/secure-delete] toolkit. Currently the total insecure mode Is used meaning only one pass with 0x00 Is written to the memory, any other option Is way too slow to be feasable. I'll replace this If I find a better option.
+  - Additionally there's a systemd service (`etc/systemd/system/autowipe.service`) which securely deletes data which may still lie In your memory before shutting down, rebooting or halt. It uses the smem tool from the [secure-delete](https://github.com/prismos-org/secure-delete) toolkit. Currently the total insecure mode Is used meaning only one pass with 0x00 Is written to the memory, any other option Is way too slow to be feasable. I'll replace this If I find a better option.
 
 ## Using These Configurations and Scripts
 
