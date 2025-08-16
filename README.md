@@ -75,7 +75,7 @@ All modifications and additions are licensed under MIT unless otherwise noted.
 
 You can contact me via email or XMPP:
 - [Email](mailto:nexus-x@tuta.io)
-- XMPP: nexus-x@xmpp.is
+- XMPP: crabbymaniac@xmpp.is
 - [PGP](https://nrz-21.github.io/key.txt)
 
 ## Useful Links
