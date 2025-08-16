@@ -4,7 +4,7 @@
 
 **hardened-configs** configuration files and scripts used in Prism OS, applicable to almost any Linux distribution to enhance security, improve privacy and reduce attack surface.
 
-## Details for Nerds
+## Inofrmation
 
 - **Scripts**: Located in `bin/`. These are wrapper scripts around programs like `curl` and `wget` to protect against HTTPS downgrade attacks, ensures TLS 1.3 is always used, and changes the user agent to that of a real browser. Additionally, there's also a `scurl-tor` script (curl over Tor) for making requests to onion services.  
   There's also a `setup` script which disables and masks various services like geoclue, cups and avahi, renames the hostname to `localhost` and the username to `user` to minimize information leakage. The script also deletes binaries like `sudo`, `su`, `ksu`, and `pkexec`, and removes the SETUID and SETGID bits from binaries, granting necessary binaries capabilities instead. Use `run0` to escalate privileges to root instead. A rule in `etc/polkit-1/rules.d/` enables the persist feature, though it may not function until an update containing this [PR](https://github.com/polkit-org/polkit/pull/533) is rolled out.
@@ -14,15 +14,15 @@
   - Blacklist several kernel modules to reduce attack surface.
   - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. We have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
   - The default umask Is `0077`.
-  - Enable per-network MAC randomization, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
-  - The default DNS server Is set to Mullvad's, with DNS over TLS and DNSSEC enabled (see: `etc/resolved.conf`).
+  - Enables per-network MAC randomization and flushes the DHCP client state before connecting to a network so that the network can not identify that you're connecting with the same device, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection).
+  - The network-provided DNS server Is used to resolve domain names by default. Using the network-provided DNS servers is the best way to blend in with other users. In some broken or unusual network environments, the network could fail to provide DNS servers or do it on purpose to fingerprint the clients seeing this we have provided **commonly** used DNS servers with good privacy policy (cloudflare and quad9, both support DNSSEC and DoT) as fallback. (see: `etc/resolved.conf`).
   - Restrict the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
   - Add a limit to restrict consecutive failed authentication attempts, with a default value of 30 then lockout for 24 hours. (see: `etc/security/faillock.conf`).
   - Allow only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
   - Enforce strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
-  - Increase the password hashing rounds to 8, and use YESCRYP-based algorithm for encryptying passwords; this Is the default In Arch Linux. (see: `etc/login.defs`).
+  - Increase the password hashing rounds to 8, and use YESCRYPT-based algorithm for encryptying passwords; Arch Linux uses YESCRYPT-based algorithm for encrypting passwords by default. (see: `etc/login.defs`).
   - Use NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
-  - Kernel arguments (located in `etc/KARGS`) that provide mitigations against various vulnerabilities like spectre and DMA and reduce the attack surface.
+  - Kernel arguments (located in `etc/KARGS`) disable SMT, enable mitigations for spectre, provide mitigations against DMA attacks, reduce information leakage, etc.
   - Hardened malloc is preloaded by specifying its shared object in the `/etc/ld.so.preload` file, which is set with permission `600`. This ensures that only root can read or modify the file, so all root processes (including PID 1) always use hardened malloc. User processes can still unset the variable as needed, providing flexibility for user applications while maintaining strict enforcement for system and privileged processes. This approach is derived from secureblue.
 
 ## Using These Configurations and Scripts
