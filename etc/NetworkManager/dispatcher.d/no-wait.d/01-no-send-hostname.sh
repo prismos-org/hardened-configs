@@ -9,15 +9,12 @@ set -oue pipefail
 
 WIFI_MAC=$(nmcli -g 802-11-wireless.cloned-mac-address connection show "$CONNECTION_UUID" 2>/dev/null || echo "")
 ETH_MAC=$(nmcli -g 802-3-ethernet.cloned-mac-address connection show "$CONNECTION_UUID" 2>/dev/null || echo "")
-CONN_TYPE=$(nmcli -t -f TYPE connection show --active | head -n 1)
-if [ "$CONN_TYPE" != "vpn" ]; then
-	if [ "$WIFI_MAC" = "permanent" ] || [ "$ETH_MAC" = "permanent" ]; then
-    		nmcli connection modify "$CONNECTION_UUID" \
-        	ipv4.dhcp-send-hostname true \
-        	ipv6.dhcp-send-hostname true
-	else
-    		nmcli connection modify "$CONNECTION_UUID" \
-        	ipv4.dhcp-send-hostname false \
-        	ipv6.dhcp-send-hostname false
-	fi
+if [ "$WIFI_MAC" = "permanent" ] || [ "$ETH_MAC" = "permanent" ]; then
+    	nmcli connection modify "$CONNECTION_UUID" \
+        ipv4.dhcp-send-hostname true \
+        ipv6.dhcp-send-hostname true
+else
+    	nmcli connection modify "$CONNECTION_UUID" \
+        ipv4.dhcp-send-hostname false \
+        ipv6.dhcp-send-hostname false
 fi

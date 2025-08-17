@@ -1,1 +1,1 @@
-/etc/NetworkManager/dispatcher.d/pre-up.d/01-flush-dhcp-client-state.sh
+/etc/NetworkManager/dispatcher.d/down.d/01-flush-dhcp-client-state.sh

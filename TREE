@@ -35,10 +35,10 @@
 │   │   │   └── macrandomize.conf - 644
 │   │   └── dispatcher.d/
 │   │       ├── 01-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
-│   │       ├── 01-flush-dhcp-cache.sh -> /etc/NetworkManager/dispatcher.d/pre-up.d/01-flush-dhcp-client-state.sh
+│   │       ├── 01-flush-dhcp-cache.sh -> /etc/NetworkManager/dispatcher.d/down.d/01-flush-dhcp-client-state.sh
 │   │       ├── no-wait.d/
 │   │       │   └── 01-no-send-hostname.sh - 744
-│   │       └── pre-up.d/
+│   │       └── down.d/
 │   │           └── 01-flush-dhcp-client-state.sh - 744
 │   ├── pam.d/
 │   │   ├── passwd - 644
