@@ -1,6 +1,6 @@
 # Hardening Brave Browser
 
-Brave is probably the only browser on Linux that is reasonably private and secure. It is built on top of Chromium, meaning it has comparatively better sandboxing than Firefox or its forks [[1](https://grapheneos.org/usage#web-browsing)][[2](https://madaidans-insecurities.github.io/firefox-chromium.html)]. You can opt out of telemetry; they have a good update cycle, CVEs are patched relatively fast, and they have decent anti-fingerprinting protection that can fool naive scripts. Currently, the Tor Browser’s approach to anti-fingerprinting is the only one with real potential.
+Brave is probably the only browser on Linux that is reasonably private and secure. It is built on top of Chromium, meaning it has better sandboxing than Firefox or its forks [[1](https://grapheneos.org/usage#web-browsing)][[2](https://madaidans-insecurities.github.io/firefox-chromium.html)]. You can opt out of telemetry; they have a good update cycle, CVEs are patched relatively fast, and they have decent anti-fingerprinting protection that can fool naive scripts. Currently, the Tor Browser’s approach to anti-fingerprinting is the only one with real potential.
 This guide provides a clear approach to hardening the Brave browser by disabling telemetry, removing features that can be termed bloat, and enabling privacy-focused settings. While primarily focused on Linux, it should apply on all platforms. You will find the `Local State` and `Preferences` file In `configs/` Implementing most of hardening stated below, however It does not change the shield settings and due to a weird bug the search engine's set to Google even If I set It to another one.
 
 **Note:**
@@ -22,7 +22,7 @@ This guide provides a clear approach to hardening the Brave browser by disabling
 3. **Set Block Fingerprinting to Strict:** this requires enabling the flag `#brave-show-strict-fingerprinting-mode` first (see Flags).  
 4. Disable **Store Contact Info for Future Broken Site Reports**.
 ### Privacy and Security
-1. **Disable Safe Browsing:** it sends partial URL hashes to Google for malware checks (anonymized but still involves Google). Use common sense.  
+1. **Disable Safe Browsing:** it sends partial URL hashes to Google for malware checks ('anonymized' but still involves Google). Use common sense.  
 2. **Enable Secure DNS** and set provider to **OS Default**.
 3. **Disable the V8 JS Optimizer** to reduce attack surface.  
 4. Set **WebRTC IP Handling Policy** to **Disable Non-Proxied UDP**.  
@@ -36,7 +36,7 @@ This guide provides a clear approach to hardening the Brave browser by disabling
 ### Languages
 1. **Disable Spell Check and Brave Translate:** spell check may send text snippets; Translate processes content on servers (Anonymized but better to avoid).
 ### Search Engines
-1. Use a self-hosted SearxNG instance or Mullvad Leta as your search engine. Mullvad Leta runs on RAM-only servers and is accessible as an onion service.  
+1. Use a self-hosted SearXNG instance or Mullvad Leta as your search engine. Mullvad Leta Is hosted on RAM-only servers and Is accessible as an onion service plus they have a good record. 
 2. Disable **Improve Search Suggestions**.  
 3. Disable **Web Discovery Project**.
 ### System
