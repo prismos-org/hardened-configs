@@ -21,7 +21,7 @@
   - Allow only users in the 'wheel' or 'adm' group to escalate privileges to root; on some distributions, the 'wheel' group is 'root' (edit `etc/security/access.conf` as needed).
   - Enforce strong passwords using the pwquality PAM module (see: `etc/pam.d/passwd`).
   - Increase the password hashing rounds to 8, and use YESCRYPT-based algorithm for encryptying passwords; *Arch Linux uses YESCRYPT-based algorithm for encrypting passwords by default. (see: `etc/login.defs`).
-  - Use NTS servers instead of unencrypted NTP servers (see: `etc/chrony.conf`).
+  - Use NTS servers instead of unencrypted NTP servers (see: `etc/ntpd-rs/ntp.toml`).
   - Kernel arguments (located in `etc/KARGS`) for Improved Kernel Self Protection, apply according to your threat model.
   - Hardened malloc is preloaded by specifying its shared object in the `/etc/ld.so.preload` file, which is set with permission `600`. This ensures that only root can read or modify the file, so all root processes (including PID 1) always use hardened malloc. User processes can still unset the variable as needed, providing flexibility for user applications while maintaining strict enforcement for system and privileged processes. This approach is derived from secureblue.
 

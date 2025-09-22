@@ -21,12 +21,13 @@
 │   │   └── system.conf.d
 │   │       └── 40-hardened-malloc.conf - 644
 │   etc/
-│   ├── chrony.conf - 644
 │   ├── ld.so.preload - 600
 │   ├── machine-id - 644
 │   ├── swrappers.conf - 644
 │   ├── login.defs - 644
 │   ├── resolv.conf -> /run/systemd/resolve/stub-resolv.conf
+│   ├── ntpd-rs/
+│   │   └── ntp.toml - 644
 │   ├── modprobe.d/
 │   │   └── blacklist.conf - 644
 │   ├── NetworkManager/
