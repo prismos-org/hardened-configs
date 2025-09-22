@@ -1,0 +1,142 @@
+{
+  "autofill": {
+    "credit_card_enabled": false
+  },
+  "brave": {
+    "ai_chat": {
+      "context_menu_enabled": false,
+      "show_toolbar_button": false,
+      "storage_enabled": false,
+      "tab_organization_enabled": false
+    },
+    "new_tab_page": {
+      "hide_all_widgets": true,
+      "show_background_image": false,
+      "show_branded_background_image": false,
+      "show_brave_news": false
+    },
+    "rewards": {
+      "show_brave_rewards_button_in_location_bar": false
+    },
+    "show_side_panel_button": false,
+    "wallet": {
+      "default_solana_wallet": 1,
+      "default_wallet2": 1,
+      "show_wallet_icon_on_toolbar": false
+    },
+    "webcompat": {
+      "report": {
+        "enable_save_contact_info": false
+      }
+    },
+    "has_seen_brave_welcome_page": true,
+    "autocomplete_enabled": false,
+    "autofill_private_windows": false,
+    "enable_closing_last_tab": false,
+    "enable_media_router_on_restart": false,
+    "enable_window_closing_confirm": true
+  },
+  "browser": {
+    "enable_spellchecking": false,
+    "default_search_provider_data": {
+      "mirrored_template_url_data": {
+        "alternate_urls": [],
+        "contextual_search_url": "",
+        "created_from_play_api": false,
+        "date_created": "13399745516236894",
+        "doodle_url": "",
+        "enforced_by_policy": false,
+        "favicon_url": "https://duckduckgo.com/favicon.ico",
+        "featured_by_policy": false,
+        "id": "3",
+        "image_search_branding_label": "",
+        "image_translate_source_language_param_key": "",
+        "image_translate_target_language_param_key": "",
+        "image_translate_url": "",
+        "image_url": "",
+        "image_url_post_params": "",
+        "input_encodings": ["UTF-8"],
+        "is_active": 1,
+        "keyword": ":ddg",
+        "last_modified": "13399745516236896",
+        "last_visited": "0",
+        "logo_url": "",
+        "new_tab_url": "https://duckduckgo.com/",
+        "originating_url": "",
+        "policy_origin": 0,
+        "preconnect_to_search_url": false,
+        "prefetch_likely_navigations": false,
+        "prepopulate_id": 3,
+        "safe_for_autoreplace": true,
+        "search_intent_params": [],
+        "search_url_post_params": "",
+        "short_name": "DuckDuckGo",
+        "starter_pack_id": 0,
+        "suggestions_url": "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list",
+        "suggestions_url_post_params": "",
+        "url": "https://duckduckgo.com/?q={searchTerms}",
+        "usage_count": 0
+      },
+      "template_url_data": {
+        "alternate_urls": [],
+        "contextual_search_url": "",
+        "created_from_play_api": false,
+        "date_created": "13399745516236894",
+        "doodle_url": "",
+        "enforced_by_policy": false,
+        "favicon_url": "https://duckduckgo.com/favicon.ico",
+        "featured_by_policy": false,
+        "id": "3",
+        "image_search_branding_label": "",
+        "image_translate_source_language_param_key": "",
+        "image_translate_target_language_param_key": "",
+        "image_translate_url": "",
+        "image_url": "",
+        "image_url_post_params": "",
+        "input_encodings": ["UTF-8"],
+        "is_active": 1,
+        "keyword": ":ddg",
+        "last_modified": "13399745516236896",
+        "last_visited": "0",
+        "logo_url": "",
+        "new_tab_url": "https://duckduckgo.com/",
+        "originating_url": "",
+        "policy_origin": 0,
+        "preconnect_to_search_url": false,
+        "prefetch_likely_navigations": false,
+        "prepopulate_id": 3,
+        "safe_for_autoreplace": true,
+        "search_intent_params": [],
+        "search_url_post_params": "",
+        "short_name": "DuckDuckGo",
+        "starter_pack_id": 0,
+        "suggestions_url": "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list",
+        "suggestions_url_post_params": "",
+        "url": "https://duckduckgo.com/?q={searchTerms}",
+        "usage_count": 0
+      }
+    }
+  },
+  "password_manager": {
+    "autofillable_credentials_account_store_login_database": false,
+    "autofillable_credentials_profile_store_login_database": false
+  },
+  "payments": {
+    "can_make_payment_enabled": false
+  },
+  "search": {
+    "suggest_enabled": false
+  },
+  "spellcheck": {
+    "use_spelling_service": false
+  },
+  "translate": {
+    "enabled": false
+  },
+  "webrtc": {
+    "ip_handling_policy": "disable_non_proxied_udp"
+  },
+  "safebrowsing": {
+    "enabled": false
+  }
+}
