@@ -14,7 +14,7 @@
   - Blacklist several kernel modules to reduce attack surface.
   - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. I have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
   - The default umask Is `0077`.
-  - Enables per-network MAC randomization and flushes the DHCP client state after a network has been disconnected so that the network can not identify that you're connecting with the same device, a unique DUID (DHCP unique identifier) per connection, and a script to disable hostname broadcasting (note: this only works with MAC randomization enabled and from the second connection, it's better to set the hostname to `localhost`).
+  - Per-connection MAC Randomization Is enabled. DHCP client anonymization Is implemented as stated In RFC 7844.
   - The network-provided DNS server Is used to resolve domain names by default. Using the network-provided DNS servers is the best way to blend in with other users. In some broken or unusual network environments, the network could fail to provide DNS servers or do it on purpose to fingerprint the clients seeing this cloudflare DNS Is set as fallback. (see: `etc/resolved.conf`).
   - Restrict the number of processes that can be forked to mitigate fork bombs (see: `etc/security/limits.conf`).
   - Add a limit to restrict consecutive failed authentication attempts, with a default value of 30 then lockout for 24 hours. (see: `etc/security/faillock.conf`).

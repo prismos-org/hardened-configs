@@ -32,15 +32,9 @@
 │   │   └── blacklist.conf - 644
 │   ├── NetworkManager/
 │   │   ├── conf.d/
-│   │   │   ├── duid.conf - 644
+│   │   │   ├── ipv4.conf - 644
+│   │   │   ├── ipv6.conf - 644
 │   │   │   └── macrandomize.conf - 644
-│   │   └── dispatcher.d/
-│   │       ├── 01-no-send-hostname.sh -> /etc/NetworkManager/dispatcher.d/no-wait.d/01-no-send-hostname.sh
-│   │       ├── 01-flush-dhcp-cache.sh -> /etc/NetworkManager/dispatcher.d/down.d/01-flush-dhcp-client-state.sh
-│   │       ├── no-wait.d/
-│   │       │   └── 01-no-send-hostname.sh - 744
-│   │       └── down.d/
-│   │           └── 01-flush-dhcp-client-state.sh - 744
 │   ├── pam.d/
 │   │   ├── passwd - 644
 │   │   └── system-login - 644

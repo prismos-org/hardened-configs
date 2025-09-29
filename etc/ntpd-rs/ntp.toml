@@ -30,4 +30,3 @@ accumulated-step-panic-threshold = 1000
 
 [observability]
 log-level = "info"
-observation-permissions = 0o000
