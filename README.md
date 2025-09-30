@@ -10,7 +10,6 @@
   There's also a `setup` script which disables and masks various services like geoclue, cups and avahi, renames the hostname to `localhost` and the username to `user` to minimize information leakage. The script also deletes binaries like `sudo`, `su`, `ksu`, and `pkexec`, and removes the SETUID and SETGID bits from binaries, granting necessary binaries capabilities instead. Use `run0` to escalate privileges to root instead. A rule in `etc/polkit-1/rules.d/` enables the persist feature, though it may not function until an update containing this [PR](https://github.com/polkit-org/polkit/pull/533) is rolled out.
 
 - **Configurations**: Located in `etc/`. These configurations improve the security of your machine and reduce its attack surface. Key changes include:
-  - Replace the machine ID with a generic one (used by WHONIX).
   - Blacklist several kernel modules to reduce attack surface.
   - Various sysctl values for system hardening, note that the provided sysctl values for system hardening may duplicate existing settings on your system, especially if you are using the linux-hardened kernel. I have included all values in the configuration file to ensure compatibility with most distributions. This should not cause any problems. (see: `etc/sysctl.d/60-hardening.conf`)
   - The default umask Is `0077`.
